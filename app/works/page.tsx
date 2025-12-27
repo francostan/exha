@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { ImageReveal } from "@/components/gallery/image-reveal"
+import { FadeIn } from "@/components/ui/fade-in"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ const allWorks = [
     title: "morning light",
     protagonist: "clara",
     place: "paris",
+    alt: "portrait of clara in soft parisian morning light, vintage film aesthetic",
   },
   {
     category: "commercial",
@@ -28,13 +30,15 @@ const allWorks = [
     title: "harbor dreams",
     protagonist: "sofia",
     place: "barcelona",
+    alt: "sofia at barcelona harbor, european summer mood with vintage tones",
   },
   {
     category: "personal",
     image: "/fashion-editorial-woman-sunglasses-retro-film-phot.jpg",
     title: "golden hour",
     protagonist: "emma",
-    place: "milan",
+    place: "barcelona",
+    alt: "emma wearing retro sunglasses in golden barcelona sunlight",
   },
   {
     category: "editorial",
@@ -42,6 +46,7 @@ const allWorks = [
     title: "garden stories",
     protagonist: "lucia",
     place: "tuscany",
+    alt: "lucia in tuscan garden surrounded by greenery, film photography",
   },
   {
     category: "personal",
@@ -49,6 +54,7 @@ const allWorks = [
     title: "vinyl days",
     protagonist: "ana",
     place: "madrid",
+    alt: "ana with vintage style in madrid, nostalgic film aesthetic",
   },
   {
     category: "editorial",
@@ -56,6 +62,7 @@ const allWorks = [
     title: "sunset dreams",
     protagonist: "mia",
     place: "lisbon",
+    alt: "mia during lisbon sunset, dreamy golden hour portrait",
   },
   {
     category: "commercial",
@@ -63,6 +70,7 @@ const allWorks = [
     title: "city lights",
     protagonist: "nina",
     place: "prague",
+    alt: "nina silhouette in prague streets, european city atmosphere",
   },
   {
     category: "commercial",
@@ -70,6 +78,7 @@ const allWorks = [
     title: "sweet moments",
     protagonist: "local stories",
     place: "lyon",
+    alt: "intimate moment captured in lyon, warm vintage tones",
   },
 ]
 
@@ -77,134 +86,144 @@ export default function WorksPage() {
   return (
     <div className="min-h-screen px-8 md:px-16 pt-32 md:pt-28 pb-28 relative">
       <header className="mb-20" aria-labelledby="works-title">
-        <p className="text-caption text-muted-foreground opacity-soft lowercase mb-10 font-light">works</p>
-        <h1 id="works-title" className="text-xl font-light lowercase tracking-wide mb-2">selected projects</h1>
-        <p className="text-caption text-muted-foreground lowercase font-thin italic opacity-muted">2019—2024</p>
+        <FadeIn delay={0}>
+          <p className="text-caption text-muted-foreground opacity-soft lowercase mb-10 font-light">works</p>
+        </FadeIn>
+        <FadeIn delay={100}>
+          <h1 id="works-title" className="text-xl font-light lowercase tracking-wide mb-2">selected projects</h1>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <p className="text-caption text-muted-foreground lowercase font-thin italic opacity-muted">2019—2024</p>
+        </FadeIn>
       </header>
 
-      <nav className="flex flex-wrap items-center gap-8 mb-20" aria-label="Work categories">
-        <Link href="/works" className="text-label lowercase text-foreground transition-colors duration-300 font-light">
-          all
-        </Link>
-        {categories.map((cat) => (
-          <Link
-            key={cat.slug}
-            href={`/works/${cat.slug}`}
-            className="text-label lowercase text-muted-foreground hover:text-foreground transition-colors duration-300 font-light"
-          >
-            {cat.name}
+      <FadeIn delay={200}>
+        <nav className="flex flex-wrap items-center gap-8 mb-20" aria-label="Work categories">
+          <Link href="/works" className="text-label lowercase text-foreground transition-colors duration-300 font-light">
+            all
           </Link>
-        ))}
-      </nav>
+          {categories.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/works/${cat.slug}`}
+              className="text-label lowercase text-muted-foreground hover:text-foreground transition-colors duration-300 font-light"
+            >
+              {cat.name}
+            </Link>
+          ))}
+        </nav>
+      </FadeIn>
 
-      <div className="grid grid-cols-12 gap-5 md:gap-8 relative">
-        <div className="col-span-12 md:col-span-5">
-          <Link href={`/works/${allWorks[0].category}`}>
-            <ImageReveal
-              src={allWorks[0].image}
-              alt={allWorks[0].title}
-              title={allWorks[0].title}
-              protagonist={allWorks[0].protagonist}
-              place={allWorks[0].place}
-              aspectRatio="portrait"
-              priority
-            />
-          </Link>
-        </div>
+      <FadeIn delay={300}>
+        <div className="grid grid-cols-12 gap-5 md:gap-8 relative">
+          <div className="col-span-12 md:col-span-5">
+            <Link href={`/works/${allWorks[0].category}`}>
+              <ImageReveal
+                src={allWorks[0].image}
+                alt={allWorks[0].alt}
+                title={allWorks[0].title}
+                protagonist={allWorks[0].protagonist}
+                place={allWorks[0].place}
+                aspectRatio="portrait"
+                priority
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-6 md:col-span-5 md:col-start-7 md:mt-40">
-          <Link href={`/works/${allWorks[1].category}`}>
-            <ImageReveal
-              src={allWorks[1].image}
-              alt={allWorks[1].title}
-              title={allWorks[1].title}
-              protagonist={allWorks[1].protagonist}
-              place={allWorks[1].place}
-              aspectRatio="landscape"
-              priority
-            />
-          </Link>
-        </div>
+          <div className="col-span-6 md:col-span-5 md:col-start-7 md:mt-40">
+            <Link href={`/works/${allWorks[1].category}`}>
+              <ImageReveal
+                src={allWorks[1].image}
+                alt={allWorks[1].alt}
+                title={allWorks[1].title}
+                protagonist={allWorks[1].protagonist}
+                place={allWorks[1].place}
+                aspectRatio="landscape"
+                priority
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-6 md:col-span-3 md:col-start-10 md:-mt-8">
-          <Link href={`/works/${allWorks[2].category}`}>
-            <ImageReveal
-              src={allWorks[2].image}
-              alt={allWorks[2].title}
-              title={allWorks[2].title}
-              protagonist={allWorks[2].protagonist}
-              place={allWorks[2].place}
-              aspectRatio="square"
-              priority
-            />
-          </Link>
-        </div>
+          <div className="col-span-6 md:col-span-3 md:col-start-10 md:-mt-8">
+            <Link href={`/works/${allWorks[2].category}`}>
+              <ImageReveal
+                src={allWorks[2].image}
+                alt={allWorks[2].alt}
+                title={allWorks[2].title}
+                protagonist={allWorks[2].protagonist}
+                place={allWorks[2].place}
+                aspectRatio="square"
+                priority
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-5 md:col-span-3 md:col-start-2 md:-mt-12">
-          <Link href={`/works/${allWorks[3].category}`}>
-            <ImageReveal
-              src={allWorks[3].image}
-              alt={allWorks[3].title}
-              title={allWorks[3].title}
-              protagonist={allWorks[3].protagonist}
-              place={allWorks[3].place}
-              aspectRatio="portrait"
-            />
-          </Link>
-        </div>
+          <div className="col-span-5 md:col-span-3 md:col-start-2 md:-mt-12">
+            <Link href={`/works/${allWorks[3].category}`}>
+              <ImageReveal
+                src={allWorks[3].image}
+                alt={allWorks[3].alt}
+                title={allWorks[3].title}
+                protagonist={allWorks[3].protagonist}
+                place={allWorks[3].place}
+                aspectRatio="portrait"
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-7 md:col-span-5 md:col-start-5 md:mt-8">
-          <Link href={`/works/${allWorks[4].category}`}>
-            <ImageReveal
-              src={allWorks[4].image}
-              alt={allWorks[4].title}
-              title={allWorks[4].title}
-              protagonist={allWorks[4].protagonist}
-              place={allWorks[4].place}
-              aspectRatio="landscape"
-            />
-          </Link>
-        </div>
+          <div className="col-span-7 md:col-span-5 md:col-start-5 md:mt-8">
+            <Link href={`/works/${allWorks[4].category}`}>
+              <ImageReveal
+                src={allWorks[4].image}
+                alt={allWorks[4].alt}
+                title={allWorks[4].title}
+                protagonist={allWorks[4].protagonist}
+                place={allWorks[4].place}
+                aspectRatio="landscape"
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-6 md:col-span-3 md:col-start-10 md:-mt-16">
-          <Link href={`/works/${allWorks[5].category}`}>
-            <ImageReveal
-              src={allWorks[5].image}
-              alt={allWorks[5].title}
-              title={allWorks[5].title}
-              protagonist={allWorks[5].protagonist}
-              place={allWorks[5].place}
-              aspectRatio="portrait"
-            />
-          </Link>
-        </div>
+          <div className="col-span-6 md:col-span-3 md:col-start-10 md:-mt-16">
+            <Link href={`/works/${allWorks[5].category}`}>
+              <ImageReveal
+                src={allWorks[5].image}
+                alt={allWorks[5].alt}
+                title={allWorks[5].title}
+                protagonist={allWorks[5].protagonist}
+                place={allWorks[5].place}
+                aspectRatio="portrait"
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-6 md:col-span-4 md:col-start-1 md:mt-4">
-          <Link href={`/works/${allWorks[6].category}`}>
-            <ImageReveal
-              src={allWorks[6].image}
-              alt={allWorks[6].title}
-              title={allWorks[6].title}
-              protagonist={allWorks[6].protagonist}
-              place={allWorks[6].place}
-              aspectRatio="portrait"
-            />
-          </Link>
-        </div>
+          <div className="col-span-6 md:col-span-4 md:col-start-1 md:mt-4">
+            <Link href={`/works/${allWorks[6].category}`}>
+              <ImageReveal
+                src={allWorks[6].image}
+                alt={allWorks[6].alt}
+                title={allWorks[6].title}
+                protagonist={allWorks[6].protagonist}
+                place={allWorks[6].place}
+                aspectRatio="portrait"
+              />
+            </Link>
+          </div>
 
-        <div className="col-span-6 md:col-span-5 md:col-start-6 md:-mt-20">
-          <Link href={`/works/${allWorks[7].category}`}>
-            <ImageReveal
-              src={allWorks[7].image}
-              alt={allWorks[7].title}
-              title={allWorks[7].title}
-              protagonist={allWorks[7].protagonist}
-              place={allWorks[7].place}
-              aspectRatio="landscape"
-            />
-          </Link>
+          <div className="col-span-6 md:col-span-5 md:col-start-6 md:-mt-20">
+            <Link href={`/works/${allWorks[7].category}`}>
+              <ImageReveal
+                src={allWorks[7].image}
+                alt={allWorks[7].alt}
+                title={allWorks[7].title}
+                protagonist={allWorks[7].protagonist}
+                place={allWorks[7].place}
+                aspectRatio="landscape"
+              />
+            </Link>
+          </div>
         </div>
-      </div>
+      </FadeIn>
 
       <aside className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2" aria-hidden="true">
         <p className="vertical-text text-micro text-muted-foreground opacity-subtle lowercase font-light">

@@ -62,7 +62,7 @@ export default function ContactPage() {
 
               <div>
                 <p className="text-caption lowercase text-muted-foreground opacity-muted mb-3 font-light">based in</p>
-                <p className="text-sm font-light lowercase">milan, italy</p>
+                <p className="text-sm font-light lowercase">barcelona, spain</p>
                 <p className="text-caption text-muted-foreground font-thin italic mt-2 opacity-muted">
                   (available worldwide)
                 </p>

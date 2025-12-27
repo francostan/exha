@@ -55,7 +55,7 @@ export default function AboutPage() {
             />
           </div>
           <p className="mt-5 text-caption text-muted-foreground font-thin italic opacity-soft">
-            (valentina — milan, 2024)
+            (valentina — barcelona, 2024)
           </p>
         </FadeIn>
       </div>
@@ -67,7 +67,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             <div>
               <p className="text-caption lowercase text-muted-foreground opacity-muted mb-3 font-light">based in</p>
-              <p className="text-sm font-light lowercase">milan, italy</p>
+              <p className="text-sm font-light lowercase">barcelona, spain</p>
             </div>
             <div>
               <p className="text-caption lowercase text-muted-foreground opacity-muted mb-3 font-light">experience</p>

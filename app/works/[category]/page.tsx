@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { ImageReveal } from "@/components/gallery/image-reveal"
+import { FadeIn } from "@/components/ui/fade-in"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -14,6 +15,7 @@ const categoryData: Record<
       protagonist: string
       place: string
       aspectRatio: "portrait" | "landscape" | "square"
+      alt: string
     }>
   }
 > = {
@@ -27,6 +29,7 @@ const categoryData: Record<
         protagonist: "clara",
         place: "paris",
         aspectRatio: "portrait",
+        alt: "portrait of clara in soft parisian morning light, vintage film aesthetic",
       },
       {
         image: "/fashion-editorial-woman-garden-vintage-film-aesthe.jpg",
@@ -34,6 +37,7 @@ const categoryData: Record<
         protagonist: "lucia",
         place: "tuscany",
         aspectRatio: "portrait",
+        alt: "lucia in tuscan garden surrounded by greenery, film photography",
       },
       {
         image: "/fashion-editorial-woman-garden-vintage-film-aesthe.jpg",
@@ -41,6 +45,7 @@ const categoryData: Record<
         protagonist: "mia",
         place: "lisbon",
         aspectRatio: "square",
+        alt: "mia during lisbon sunset, dreamy golden hour portrait",
       },
     ],
   },
@@ -52,8 +57,9 @@ const categoryData: Record<
         image: "/fashion-editorial-woman-sunglasses-retro-film-phot.jpg",
         title: "golden hour",
         protagonist: "emma",
-        place: "milan",
+        place: "barcelona",
         aspectRatio: "portrait",
+        alt: "emma wearing retro sunglasses in golden barcelona sunlight",
       },
       {
         image: "/fashion-editorial-woman-sunglasses-retro-film-phot.jpg",
@@ -61,6 +67,7 @@ const categoryData: Record<
         protagonist: "ana",
         place: "madrid",
         aspectRatio: "portrait",
+        alt: "ana with vintage style in madrid, nostalgic film aesthetic",
       },
     ],
   },
@@ -74,6 +81,7 @@ const categoryData: Record<
         protagonist: "sofia",
         place: "barcelona",
         aspectRatio: "landscape",
+        alt: "sofia at barcelona harbor, european summer mood with vintage tones",
       },
       {
         image: "/fashion-editorial-woman-harbor-european-vintage-fi.jpg",
@@ -81,6 +89,7 @@ const categoryData: Record<
         protagonist: "nina",
         place: "prague",
         aspectRatio: "portrait",
+        alt: "nina silhouette in prague streets, european city atmosphere",
       },
       {
         image: "/fashion-editorial-woman-vintage-film-photography-c.jpg",
@@ -88,6 +97,7 @@ const categoryData: Record<
         protagonist: "local stories",
         place: "lyon",
         aspectRatio: "landscape",
+        alt: "intimate moment captured in lyon, warm vintage tones",
       },
     ],
   },
@@ -101,6 +111,7 @@ const categoryData: Record<
         protagonist: "various",
         place: "southern europe",
         aspectRatio: "landscape",
+        alt: "cinematic summer moments across southern europe",
       },
       {
         image: "/fashion-editorial-woman-harbor-european-vintage-fi.jpg",
@@ -108,6 +119,7 @@ const categoryData: Record<
         protagonist: "studio sessions",
         place: "barcelona",
         aspectRatio: "portrait",
+        alt: "behind the scenes studio session in barcelona",
       },
       {
         image: "/fashion-editorial-woman-garden-vintage-film-aesthe.jpg",
@@ -115,6 +127,7 @@ const categoryData: Record<
         protagonist: "lucia",
         place: "tuscany",
         aspectRatio: "landscape",
+        alt: "golden hour video reel featuring lucia in tuscany",
       },
     ],
   },
@@ -148,49 +161,59 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className="min-h-screen px-8 md:px-16 pt-32 md:pt-28 pb-28">
-      <nav className="mb-16 text-caption text-muted-foreground lowercase font-light" aria-label="Breadcrumb">
-        <Link href="/works" className="hover:text-primary transition-colors duration-300">
-          works
-        </Link>
-        <span className="mx-2 opacity-soft">/</span>
-        <span className="text-foreground">{data.name}</span>
-      </nav>
+      <FadeIn delay={0}>
+        <nav className="mb-16 text-caption text-muted-foreground lowercase font-light" aria-label="Breadcrumb">
+          <Link href="/works" className="hover:text-primary transition-colors duration-300">
+            works
+          </Link>
+          <span className="mx-2 opacity-soft">/</span>
+          <span className="text-foreground">{data.name}</span>
+        </nav>
+      </FadeIn>
 
       <header className="mb-20" aria-labelledby="category-title">
-        <h1 id="category-title" className="text-xl font-light lowercase tracking-wide mb-4">{data.name}</h1>
-        <p className="text-caption text-muted-foreground lowercase font-thin italic opacity-muted max-w-xl">
-          {data.description}
-        </p>
+        <FadeIn delay={100}>
+          <h1 id="category-title" className="text-xl font-light lowercase tracking-wide mb-4">{data.name}</h1>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <p className="text-caption text-muted-foreground lowercase font-thin italic opacity-muted max-w-xl">
+            {data.description}
+          </p>
+        </FadeIn>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        {data.works.map((work, index) => (
-          <div
-            key={work.title}
-            className={index % 3 === 0 ? "md:col-span-2" : ""}
-          >
-            <ImageReveal
-              src={work.image}
-              alt={work.title}
-              title={work.title}
-              protagonist={work.protagonist}
-              place={work.place}
-              aspectRatio={index % 3 === 0 ? "landscape" : work.aspectRatio}
-              priority={index < 2}
-            />
-          </div>
-        ))}
-      </div>
+      <FadeIn delay={250}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {data.works.map((work, index) => (
+            <div
+              key={work.title}
+              className={index % 3 === 0 ? "md:col-span-2" : ""}
+            >
+              <ImageReveal
+                src={work.image}
+                alt={work.alt}
+                title={work.title}
+                protagonist={work.protagonist}
+                place={work.place}
+                aspectRatio={index % 3 === 0 ? "landscape" : work.aspectRatio}
+                priority={index < 2}
+              />
+            </div>
+          ))}
+        </div>
+      </FadeIn>
 
-      <div className="mt-20">
-        <Link
-          href="/works"
-          className="inline-flex items-center gap-4 text-label lowercase hover:text-primary transition-colors duration-300 font-light group"
-        >
-          <span className="w-6 h-px bg-current group-hover:w-10 transition-all duration-300" />
-          back to all works
-        </Link>
-      </div>
+      <FadeIn delay={400}>
+        <div className="mt-20">
+          <Link
+            href="/works"
+            className="inline-flex items-center gap-4 text-label lowercase hover:text-primary transition-colors duration-300 font-light group"
+          >
+            <span className="w-6 h-px bg-current group-hover:w-10 transition-all duration-300" />
+            back to all works
+          </Link>
+        </div>
+      </FadeIn>
     </div>
   )
 }

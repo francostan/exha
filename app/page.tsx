@@ -25,10 +25,10 @@ const featuredProjects = [
     image: "/fashion-editorial-woman-sunglasses-retro-film-phot.jpg",
     title: "golden hour",
     protagonist: "emma",
-    place: "milan",
+    place: "barcelona",
     category: "personal",
     size: "small" as const,
-    alt: "emma wearing retro sunglasses in golden milan sunlight",
+    alt: "emma wearing retro sunglasses in golden barcelona sunlight",
   },
   {
     image: "/fashion-editorial-woman-garden-vintage-film-aesthe.jpg",
@@ -85,7 +85,7 @@ export default function HomePage() {
 
             <FadeIn delay={400}>
               <p className="text-caption text-muted-foreground opacity-subtle lowercase mt-16 font-thin italic">
-                valentina motta — milan
+                valentina motta — barcelona
               </p>
             </FadeIn>
           </div>
