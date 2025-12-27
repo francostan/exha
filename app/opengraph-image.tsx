@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og"
+import { readFile } from "node:fs/promises"
+import { join } from "node:path"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
 export const alt = "exha studio — valentina motta"
 export const size = {
@@ -10,6 +12,9 @@ export const size = {
 export const contentType = "image/png"
 
 export default async function Image() {
+  const logoData = await readFile(join(process.cwd(), "public/logo_exha.png"))
+  const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`
+
   return new ImageResponse(
     (
       <div
@@ -21,53 +26,30 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          fontFamily: "system-ui, sans-serif",
         }}
       >
-        <div
+        <img
+          src={logoBase64}
+          alt="exha studio logo"
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "24px",
+            maxWidth: "400px",
+            maxHeight: "400px",
+            objectFit: "contain",
+          }}
+        />
+        <p
+          style={{
+            fontSize: "20px",
+            fontWeight: 300,
+            color: "#737373",
+            letterSpacing: "0.15em",
+            textTransform: "lowercase",
+            marginTop: "40px",
+            fontFamily: "system-ui, sans-serif",
           }}
         >
-          <h1
-            style={{
-              fontSize: "48px",
-              fontWeight: 300,
-              color: "#1a1a1a",
-              letterSpacing: "0.25em",
-              textTransform: "lowercase",
-              margin: 0,
-            }}
-          >
-            exha studio
-          </h1>
-          <p
-            style={{
-              fontSize: "24px",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "#737373",
-              margin: 0,
-            }}
-          >
-            valentina motta
-          </p>
-          <p
-            style={{
-              fontSize: "16px",
-              fontWeight: 300,
-              color: "#737373",
-              letterSpacing: "0.15em",
-              textTransform: "lowercase",
-              marginTop: "32px",
-            }}
-          >
-            photographer & creative director
-          </p>
-        </div>
+          photographer & creative director
+        </p>
       </div>
     ),
     {
