@@ -102,6 +102,20 @@ const categoryData: Record<
         place: "southern europe",
         aspectRatio: "landscape",
       },
+      {
+        image: "/fashion-editorial-woman-harbor-european-vintage-fi.jpg",
+        title: "behind the lens",
+        protagonist: "studio sessions",
+        place: "barcelona",
+        aspectRatio: "portrait",
+      },
+      {
+        image: "/fashion-editorial-woman-garden-vintage-film-aesthe.jpg",
+        title: "golden hour reel",
+        protagonist: "lucia",
+        place: "tuscany",
+        aspectRatio: "landscape",
+      },
     ],
   },
 }

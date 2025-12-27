@@ -17,7 +17,20 @@ export const metadata: Metadata = {
   title: "exha studio — valentina motta",
   description:
     "photographer & creative director based in europe. editorial, commercial, and personal photography projects.",
-  generator: "v0.app",
+  metadataBase: new URL("https://exhastudio.com"),
+  openGraph: {
+    title: "exha studio — valentina motta",
+    description: "photographer & creative director based in europe. editorial, commercial, and personal photography projects.",
+    url: "https://exhastudio.com",
+    siteName: "exha studio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "exha studio — valentina motta",
+    description: "photographer & creative director based in europe.",
+  },
   icons: {
     icon: [
       {

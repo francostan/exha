@@ -10,6 +10,7 @@ interface Project {
   place: string
   category: string
   size: "small" | "medium" | "large"
+  alt?: string
 }
 
 interface CollageGridProps {
@@ -25,7 +26,7 @@ export function CollageGrid({ projects }: CollageGridProps) {
           <Link href={`/works/${projects[0].category}`} className="block">
             <ImageReveal
               src={projects[0].image || "/placeholder.svg"}
-              alt={projects[0].title}
+              alt={projects[0].alt || projects[0].title}
               title={projects[0].title}
               protagonist={projects[0].protagonist}
               place={projects[0].place}
@@ -40,7 +41,7 @@ export function CollageGrid({ projects }: CollageGridProps) {
           <Link href={`/works/${projects[1].category}`} className="block">
             <ImageReveal
               src={projects[1].image || "/placeholder.svg"}
-              alt={projects[1].title}
+              alt={projects[1].alt || projects[1].title}
               title={projects[1].title}
               protagonist={projects[1].protagonist}
               place={projects[1].place}
@@ -56,7 +57,7 @@ export function CollageGrid({ projects }: CollageGridProps) {
           <Link href={`/works/${projects[2].category}`} className="block">
             <ImageReveal
               src={projects[2].image || "/placeholder.svg"}
-              alt={projects[2].title}
+              alt={projects[2].alt || projects[2].title}
               title={projects[2].title}
               protagonist={projects[2].protagonist}
               place={projects[2].place}
@@ -70,7 +71,7 @@ export function CollageGrid({ projects }: CollageGridProps) {
           <Link href={`/works/${projects[3].category}`} className="block">
             <ImageReveal
               src={projects[3].image || "/placeholder.svg"}
-              alt={projects[3].title}
+              alt={projects[3].alt || projects[3].title}
               title={projects[3].title}
               protagonist={projects[3].protagonist}
               place={projects[3].place}
@@ -84,7 +85,7 @@ export function CollageGrid({ projects }: CollageGridProps) {
           <Link href={`/works/${projects[4].category}`} className="block">
             <ImageReveal
               src={projects[4].image || "/placeholder.svg"}
-              alt={projects[4].title}
+              alt={projects[4].alt || projects[4].title}
               title={projects[4].title}
               protagonist={projects[4].protagonist}
               place={projects[4].place}
@@ -99,7 +100,7 @@ export function CollageGrid({ projects }: CollageGridProps) {
           <Link href={`/works/${projects[5].category}`} className="block">
             <ImageReveal
               src={projects[5].image || "/placeholder.svg"}
-              alt={projects[5].title}
+              alt={projects[5].alt || projects[5].title}
               title={projects[5].title}
               protagonist={projects[5].protagonist}
               place={projects[5].place}
